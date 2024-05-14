@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header card bg-info">
+                <h1 class="text-center">Update Student</h1>
+            </div>
+            <div class="card-body card bg-info">
+                <form action="{% url 'update_student' student.pk %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="first_name">First Name:</label>
+                        <input type="text" name="first_name" id="first_name" value="{{ student.first_name }}" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">Last Name:</label>
+                        <input type="text" name="last_name" id="last_name" value="{{ student.last_name }}" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="course">Course:</label>
+                        <select name="course" id="course" class="form-control">
+                            <option value="BS-CS" {% if student.course == 'BS-CS' %} selected {% endif %}>BS in Computer Science</option>
+                            <option value="BS-DS" {% if student.course == 'BS-DS' %} selected {% endif %}>BS in Data Science</option>
+                            <option value="BS-IT" {% if student.course == 'BS-IT' %} selected {% endif %}>BS in Information Technology</option>
+                            <option value="BS-IS" {% if student.course == 'BS-IS' %} selected {% endif %}>BS in Information Systems</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender:</label>
+                        <div class="form-check">
+                            <input type="radio" name="gender" id="male" value="Male" {% if student.gender == 'Male' %} checked {% endif %} class="form-check-input">
+                            <label for="male" class="form-check-label">Male</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" name="gender" id="female" value="Female" {% if student.gender == 'Female' %} checked {% endif %} class="form-check-input">
+                            <label for="female" class="form-check-label">Female</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age:</label>
+                        <input type="number" name="age" id="age" value="{{ student.age }}" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update Student</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

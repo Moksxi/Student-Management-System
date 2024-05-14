@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card bg-info">
+                <div class="card-header text-center">
+                    <h1 class="text-black">Add Student</h1>
+                </div>
+                <div class="card-body">
+                    <form action="{% url 'add_student' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="first_name" class="text-gray-700">First Name</label>
+                            <input class="form-control" type="text" name="first_name" id="first_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name" class="text-gray-700">Last Name</label>
+                            <input class="form-control" type="text" name="last_name" id="last_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="course" class="text-gray-700">Course</label>
+                            <select class="form-control" name="course" id="course">
+                                <option value="BS-CS">BS in Computer Science</option>
+                                <option value="BS-DS">BS in Data Science</option>
+                                <option value="BS-IT">BS in Information Technology</option>
+                                <option value="BS-IS">BS in Information Systems</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-gray-700">Gender</label>
+                            <div class="form-check">
+                                <input type="radio" name="gender" id="male" value="Male" class="form-check-input">
+                                <label for="male" class="form-check-label">Male</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" name="gender" id="female" value="Female" class="form-check-input">
+                                <label for="female" class="form-check-label">Female</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="age" class="text-gray-700">Age</label>
+                            <input class="form-control" type="number" name="age" id="age">
+                        </div>
+                        <button class="btn btn-primary btn-block" type="submit">Add Student</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
